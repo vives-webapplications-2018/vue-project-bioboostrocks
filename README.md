@@ -4,7 +4,6 @@ Multiplayer Blackjack.
 ## What?
 Team vs Team Blackjack.
 
-We will focus on the first game, if this is fully implemented we will look into the second type of game.
 
 ## How?
 We will make the game into php, we will use SLIM and VUE to help us simplify the game.
