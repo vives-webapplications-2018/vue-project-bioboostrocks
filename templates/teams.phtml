@@ -12,6 +12,9 @@
         </style>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
+    <?php   
+        $playerCounter = 0;
+    ?>
     <body>
         <nav>
             <div class="nav-wrapper">
@@ -24,7 +27,7 @@
         <div id="app" class="container">
             <div class="row">
                 <div id="app">
-                    <h2>Welcome to team <?= $team ?></h1>
+                    <h2>Welcome to team <?= $team ?></h2>
                     <div class="container">
                         <div id="redButtons" class="col s6">
                             <button class="btn waves-effect waves-light red" type="submit" name="hit">Hit</button>
