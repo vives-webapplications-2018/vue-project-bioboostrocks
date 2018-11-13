@@ -1,21 +1,30 @@
 <?php
-$totalCards = 0;
-$deck array(1,2,3,4,5);
-$reservedDeck array();
-$deckIteration = 0;
 
-function drawRandomCard(deck[])
+//variables for testing
+$deck = array(1,2,3,4,5);
+$iteration = 0;
+$playerCards = 0;
+
+
+shuffle($deck);
+
+function drawCard($deck, $iteration)
 {
- $reservedIndex = int rand(0, 41);
- $reservedDeck[deckIteration] = $reservedIndex;
-if(reservedIndex != 
-
-deck++;
- return deck[reservedIndex];
+	$drawnCard = $deck[$iteration];
+	$iteration++;
+	return $drawnCard;	
 }
 
+//testing
+$playerCards += drawCard($deck, $iteration);
+echo $playerCards;
+
+
+/*
 function totalPlayerCards()
 {
+	$totalCards = 0;
 	return $totalCards += drawRandomCard($deck);
 }
+
 echo totalPlayerCards();
