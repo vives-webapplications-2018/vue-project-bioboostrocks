@@ -10,8 +10,9 @@
                 text-align: center;
             }
         </style>
-        <link rel="stylesheet" href="css/cards.css">
+        <link rel="stylesheet" href="/css/cards.css">
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
     </head>
     <body>
         <nav>
@@ -31,12 +32,42 @@
                             <button class="btn waves-effect waves-light red" type="submit" name="hit">Hit</button>
                             <button class="btn waves-effect waves-light red" type="submit" name="stand">Stand</button>
                         </div>
+                        <ul id="redCards" style="list-style-type:none">
+                            <li style="left:0px;z-index:0;position:absolute"></li>
+                            <li style="left:100px;z-index:1;position:absolute"></li>
+                            <li style="left:200px;z-index:2;position:absolute"></li>
+                            <li style="left:300px;z-index:3;position:absolute"></li>
+                            <li style="left:400px;z-index:4;position:absolute"></li>
+                            <li style="left:500px;z-index:5;position:absolute"></li>
+                            <li style="left:600px;z-index:6;position:absolute"></li>
+                            <li style="left:700px;z-index:7;position:absolute"></li>
+                            <li style="left:800px;z-index:8;position:absolute"></li>
+                            <li style="left:900px;z-index:9;position:absolute"></li>
+                            <li style="left:1000px;z-index:10;position:absolute"></li>
+                            <li style="left:1100px;z-index:11;position:absolute"></li>
+                            <li style="left:1200px;z-index:12;position:absolute"></li>
+                        </ul>
                     </div>
                     <div class="container">
                         <div id="blueButtons" class="col s6">
                             <button class="btn waves-effect waves-light blue" type="submit" name="hit">Hit</button>
                             <button class="btn waves-effect waves-light blue" type="submit" name="stand">Stand</button>
                         </div>
+                        <ul id="blueCards" style="list-style-type:none">
+                            <li style="left:0px;z-index:0;position:absolute"></li>
+                            <li style="left:100px;z-index:1;position:absolute"></li>
+                            <li style="left:200px;z-index:2;position:absolute"></li>
+                            <li style="left:300px;z-index:3;position:absolute"></li>
+                            <li style="left:400px;z-index:4;position:absolute"></li>
+                            <li style="left:500px;z-index:5;position:absolute"></li>
+                            <li style="left:600px;z-index:6;position:absolute"></li>
+                            <li style="left:700px;z-index:7;position:absolute"></li>
+                            <li style="left:800px;z-index:8;position:absolute"></li>
+                            <li style="left:900px;z-index:9;position:absolute"></li>
+                            <li style="left:1000px;z-index:10;position:absolute"></li>
+                            <li style="left:1100px;z-index:11;position:absolute"></li>
+                            <li style="left:1200px;z-index:12;position:absolute"></li>
+                        </ul>
                     </div>
                         <div id="redResults" class="col s6">
                             <p>50% voted Hit (4)</p>
@@ -53,5 +84,5 @@
             </div>
         </div>
     </body>
-    <script src="js/app.js"></script>
+    <script src="/js/app.js"></script>
 </html>
