@@ -5,16 +5,27 @@ $playerCards = 0;
 
 $cardNumbers = array('Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King');
 $cardColors = array('Spade', 'Hearts', 'Diamonds', 'Clubs');
-$deck = array();
 
-foreach($cardColors as $cardColor)
+$shuffledDeck = shuffleCards($cardColors, $cardNumbers);
+
+function shuffleCards($cardColors, $cardNumbers)
 {
-	foreach($cardNumbers as $cardNumber)
+	foreach($cardColors as $cardColor)
 	{
-		$deck[] = $cardColor . $cardNumber;
+		foreach($cardNumbers as $cardNumber)
+			$deck[] = $cardColor . $cardNumber;
 	}
+	shuffle($deck);
+	return $deck;
 }
 
-shuffle($deck);
-var_dump($deck);
+
+function hitCard(&$shuffledDeck)
+{
+	$drawnCard = array_pop($shuffledDeck);
+	return $drawnCard;
+}
+
+
+
 
