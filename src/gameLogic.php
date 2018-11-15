@@ -1,30 +1,31 @@
 <?php
 
 //variables for testing
-$deck = array(1,2,3,4,5);
-$iteration = 0;
 $playerCards = 0;
 
+$cardNumbers = array('Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King');
+$cardColors = array('Spade', 'Hearts', 'Diamonds', 'Clubs');
 
-shuffle($deck);
+$shuffledDeck = shuffleCards($cardColors, $cardNumbers);
 
-function drawCard($deck, $iteration)
+function shuffleCards($cardColors, $cardNumbers)
 {
-	$drawnCard = $deck[$iteration];
-	$iteration++;
-	return $drawnCard;	
+	foreach($cardColors as $cardColor)
+	{
+		foreach($cardNumbers as $cardNumber)
+			$deck[] = $cardColor . $cardNumber;
+	}
+	shuffle($deck);
+	return $deck;
 }
 
-//testing
-$playerCards += drawCard($deck, $iteration);
-echo $playerCards;
 
-
-/*
-function totalPlayerCards()
+function hitCard(&$shuffledDeck)
 {
-	$totalCards = 0;
-	return $totalCards += drawRandomCard($deck);
+	$drawnCard = array_pop($shuffledDeck);
+	return $drawnCard;
 }
 
-echo totalPlayerCards();
+
+
+
