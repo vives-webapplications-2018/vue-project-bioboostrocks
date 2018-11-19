@@ -9,7 +9,7 @@ Team vs Team Blackjack.
 We will make the game in php and javascript, we will use Slim and Vue to help us simplify the game.
 
 ## Functionality?
-We will have an array with all possible values in it. For the first draw each team will recieve a random number from the array. This number will not be hidden from each other although the next round of cards will be hidden, so each team will have 2 cards at this point of which one is hidden and 1 is visible. Then both teams get to have a choice, "Hit" or "Stand". If you hit, you will recieve another card. If you hold, you won't get another card and you will compare your numbers with the numbers from your opponent. The goal is to have the highest possible number under 22. 
+We will have an array with all the possible values in it. For the first draw each team will recieve a random number from the array. This number will not be hidden from each other although the next round of cards will be hidden, so each team will have 2 cards at this point of which one is hidden and 1 is visible. Then both teams get to have a choice, "Hit" or "Stand". If you hit, you will recieve another card. If you hold, you won't get another card and you will compare your numbers with the numbers from your opponent. The goal is to have the highest possible number under 22. 
 
 ## Possibilities
 
