@@ -2,6 +2,7 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+include "gamelogic.php";
 
 // Routes
 
@@ -23,18 +24,12 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
     $this->logger->info("Get '/cards' route");
     $array = array(
         "redCards" => array(
-            file_get_contents("cards/club/club01.html.base64"),
-            file_get_contents("cards/heart/heart05.html.base64"),
-            file_get_contents("cards/spade/spade08.html.base64"),
-            file_get_contents("cards/club/club10.html.base64"),
-            file_get_contents("cards/diamond/diamond12.html.base64")
+            getCardBase64("diamond", "12"),
+            getCardBase64("diamond", "12")
         ),
         "blueCards" => array(
-            file_get_contents("cards/club/club01.html.base64"),
-            file_get_contents("cards/heart/heart05.html.base64"),
-            file_get_contents("cards/spade/spade08.html.base64"),
-            file_get_contents("cards/diamond/diamond01.html.base64"),
-            file_get_contents("cards/spade/spade13.html.base64")
+            getCardBase64("diamond", "12"),
+            getCardBase64("diamond", "11")
         )
     );
     return json_encode($array);
@@ -42,18 +37,18 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
 
 $app->get('/teams/{team}', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
-    $this->logger->info("Get '/teams' route");
+    $this->logger->info("Get '/teams/$team' route");
     return $this->renderer->render($response, 'teams.phtml', $args);
 });
 
 $app->get('/teams/{team}/hit', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
-    $this->logger->info("Get '/teams' route");
+    $this->logger->info("Get '/teams/$team/stand' route");
     return $this->renderer->render($response, 'teams.phtml', $args);
 });
 
 $app->get('/teams/{team}/stand', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
-    $this->logger->info("Get '/teams' route");
+    $this->logger->info("Get '/teams/$team/stand' route");
     return $this->renderer->render($response, 'teams.phtml', $args);
 });

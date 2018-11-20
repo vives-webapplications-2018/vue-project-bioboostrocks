@@ -31,5 +31,6 @@ function hitCard(&$shuffledDeck)
 
 function getCardBase64($symbol, $number)
 {
-    return file_get_contents("cards/$symbol/$symbol$number.html.base64");
+    $base64 = file_get_contents("cards/$symbol/$symbol$number.html.base64");
+    return str_replace("\n", "", $base64);
 }
