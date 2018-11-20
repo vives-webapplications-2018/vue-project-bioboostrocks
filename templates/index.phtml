@@ -5,14 +5,10 @@
         <title>Blackjack</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <style>
-            body {
-                text-align: center;
-            }
-        </style>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+        <link rel="stylesheet" href="/css/style.css">
         <script src="js/index.js"></script>
     </head>
     <body>
@@ -27,7 +23,7 @@
             <div class="row">
                 <h3>Team vs Team</h2>
                 <div class="container">
-                    <div class="col s6">
+                    <div class="col s5">
                         <p>{{redPlayers}} players</p>
                         <form action="/teams/red" method="get">
                             <button class="btn waves-effect waves-light red" type="submit">Team red
@@ -37,7 +33,15 @@
                     </div>
                 </div>
                 <div class="container">
-                    <div class="col s6">
+                    <div class="col s2">
+                        <div id="rulesButton" class="col s2">
+                            <a class="btn waves-effect waves-light grey darken-3" type="submit" 
+                            href="https://www.bicyclecards.com/how-to-play/blackjack/" target="_blank" name="rules">Rules</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="col s5">
                         <p>{{bluePlayers}} players</p>
                         <form action="/teams/blue" method="get">
                             <button class="btn waves-effect waves-light blue" type="submit">Team blue
