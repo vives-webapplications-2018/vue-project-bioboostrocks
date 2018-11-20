@@ -1,5 +1,6 @@
 /* Body */
 body {
+  position:relative;
   background: #ebeff2;
   color: #666666;
   font-family: "RobotoDraft", "Roboto", sans-serif;
@@ -13,7 +14,6 @@ body {
 /* Card */
 .card {
   z-index: 1;
-  position: relative;
   background: #ffffff;
   width: 360px;
   height: 480px;
@@ -378,4 +378,10 @@ body {
     bottom: 30px;
     opacity: 0;
   }
+}
+
+/* CardLi */
+.cardContainer {
+  position:absolute;
+  transform:scale(0.65);
 }
