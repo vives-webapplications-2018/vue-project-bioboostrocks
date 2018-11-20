@@ -1,6 +1,11 @@
 # Project
 Multiplayer Blackjack.
 
+## Dependencies
+You will need to install the SLIM skeleton framework with composer, use this command in the root directory:
+```
+composer require slim/slim "^3.0"
+```
 ## What?
 Team vs Team Blackjack.
 
