@@ -31,7 +31,7 @@
                 <div id="app">
                     <h2>Welcome to team <?= $team ?></h2>
                     <div class="container">
-                        <div id="redButtons" class="col s6">
+                        <div id="redButtons" class="col s5">
                             <button class="btn waves-effect waves-light red" type="submit" name="hit">Hit</button>
                             <button class="btn waves-effect waves-light red" type="submit" name="stand">Stand</button>
                         </div>
@@ -52,9 +52,14 @@
                         </ul>
                     </div>
                     <div class="container">
-                        <div id="blueButtons" class="col s6">
-                            <button class="btn waves-effect waves-light blue" type="submit" name="hit">Hit</button>
+                        <div id="quitButton" class="col s2">
+                            <a class="btn waves-effect waves-light grey darken-3" type="submit" href="/" name="quit">Quit</a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div id="blueButtons" class="col s5">
                             <button class="btn waves-effect waves-light blue" type="submit" name="stand">Stand</button>
+                            <button class="btn waves-effect waves-light blue" type="submit" name="hit">Hit</button>
                         </div>
                         <ul id="blueCards" style="list-style-type:none">
                             <li class ="cardContainer" style="right:0px;z-index:0;"></li>
@@ -72,17 +77,16 @@
                             <li class ="cardContainer" style="right:600px;z-index:12;"></li>
                         </ul>
                     </div>
+                    <div class="container">
                         <div id="redResults" class="col s6">
                             <p>50% voted Hit (4)</p>
                             <p>50% voted Stand (4)</p>
                         </div>
                         <div id="blueResults" class="col s6">
-                        <p>50% voted Hit (4)</p>
-                        <p>50% voted Stand (4)</p>
+                            <p>50% voted Hit (4)</p>
+                            <p>50% voted Stand (4)</p>
                         </div>
-                        <div id="quitButton" class="col s12">
-                            <button class="btn waves-effect waves-light grey darken-3" type="submit" onclick= href="/" name="quit">Quit</button>
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
