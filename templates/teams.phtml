@@ -28,8 +28,8 @@
                     <h2>Welcome to team <?= $team ?></h2>
                     <div class="container">
                         <div id="redButtons" class="col s5">
-                            <button class="btn waves-effect waves-light red" type="submit" name="hit">Hit</button>
-                            <button class="btn waves-effect waves-light red" type="submit" name="stand">Stand</button>
+                            <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit">Hit</button>
+                            <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand">Stand</button>
                         </div>
                         <ul id="redCards" style="list-style-type:none">
                             <li class ="cardContainer" style="left:0px;z-index:0;"></li>
@@ -52,8 +52,8 @@
                     </div>
                     <div class="container">
                         <div id="blueButtons" class="col s5">
-                            <button class="btn waves-effect waves-light blue" type="submit" name="stand">Stand</button>
-                            <button class="btn waves-effect waves-light blue" type="submit" name="hit">Hit</button>
+                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand">Stand</button>
+                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit">Hit</button>
                         </div>
                         <ul id="blueCards" style="list-style-type:none">
                             <li class ="cardContainer" style="right:0px;z-index:0;"></li>
