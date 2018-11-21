@@ -47,7 +47,7 @@ $app->get('/teams/{team}', function (Request $request, Response $response, array
 $app->get('/teams/{team}/hit', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team/hit' route");
-    array_push($_SESSION["cards"]["redCards"], getCardBase64("spade", "1"));
+    array_push($_SESSION["cards"][$team . "Cards"], getCardBase64("spade", "1"));
     return json_encode($_SESSION["cards"]);
 });
 
