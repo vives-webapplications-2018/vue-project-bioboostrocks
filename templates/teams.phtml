@@ -31,6 +31,30 @@
                             <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit">Hit (50%)</button>
                             <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand">Stand (50%)</button>
                         </div>
+                    </div>
+                    <div class="container">
+                        <div id="quitButton" class="col s2">
+                            <a class="btn waves-effect waves-light grey darken-3" type="submit" href="/" name="quit">Quit</a>
+                            <a class="btn waves-effect waves-light grey darken-3" type="submit" onclick="fetch('/teams/reset', {method: 'GET'});location.reload();" name="reset">Reset</a>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div id="blueButtons" class="col s5">
+                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand">Stand (50%)</button>
+                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit">Hit (50%)</button>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div id="redResults" class="col s6">
+                            <p>50% voted Hit (4)</p>
+                            <p>50% voted Stand (4)</p>
+                        </div>
+                        <div id="blueResults" class="col s6">
+                            <p>50% voted Hit (4)</p>
+                            <p>50% voted Stand (4)</p>
+                        </div>
+                    </div>
+                    <div class="container">
                         <ul id="redCards" style="list-style-type:none">
                             <li class ="cardContainer" style="left:0px;z-index:0;"></li>
                             <li class ="cardContainer" style="left:75px;z-index:1;"></li>
@@ -44,18 +68,6 @@
                             <li class ="cardContainer" style="left:650px;z-index:9;"></li>
                             <li class ="cardContainer" style="left:725px;z-index:10;"></li>
                         </ul>
-                    </div>
-                    <div class="container">
-                        <div id="quitButton" class="col s2">
-                            <a class="btn waves-effect waves-light grey darken-3" type="submit" href="/" name="quit">Quit</a>
-                            <a class="btn waves-effect waves-light grey darken-3" type="submit" onclick="fetch('/teams/reset', {method: 'GET'});location.reload();" name="reset">Reset</a>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div id="blueButtons" class="col s5">
-                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand">Stand (50%)</button>
-                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit">Hit (50%)</button>
-                        </div>
                         <ul id="blueCards" style="list-style-type:none">
                             <li class ="cardContainer" style="right:0px;z-index:0;"></li>
                             <li class ="cardContainer" style="right:50px;z-index:1;"></li>
@@ -69,16 +81,6 @@
                             <li class ="cardContainer" style="right:450px;z-index:9;"></li>
                             <li class ="cardContainer" style="right:500px;z-index:10;"></li>
                         </ul>
-                    </div>
-                    <div class="container">
-                        <div id="redResults" class="col s6">
-                            <p>50% voted Hit (4)</p>
-                            <p>50% voted Stand (4)</p>
-                        </div>
-                        <div id="blueResults" class="col s6">
-                            <p>50% voted Hit (4)</p>
-                            <p>50% voted Stand (4)</p>
-                        </div>
                     </div>
                 </div>
             </div>
