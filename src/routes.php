@@ -22,17 +22,20 @@ $app->get('/playerCount', function (Request $request, Response $response, array 
 
 $app->get('/teams/cards', function (Request $request, Response $response, array $args) {
     $this->logger->info("Get '/cards' route");
-    $array = array(
-        "redCards" => array(
-            getCardBase64("diamond", "12"),
-            getCardBase64("diamond", "12")
-        ),
-        "blueCards" => array(
-            getCardBase64("diamond", "12"),
-            getCardBase64("diamond", "11")
-        )
-    );
-    return json_encode($array);
+    if (!isset($_SESSION["cards"])) {
+        $this->logger->info("Create cards array");
+        $_SESSION["cards"] = array(
+            "redCards" => array(
+                getCardBase64("club", "11"),
+                getCardBase64("diamond", "7")
+            ),
+            "blueCards" => array(
+                getCardBase64("club", "2"),
+                getCardBase64("spade", "5")
+            )
+        );
+    }
+    return json_encode($_SESSION["cards"]);
 });
 
 $app->get('/teams/{team}', function (Request $request, Response $response, array $args) {
@@ -43,12 +46,12 @@ $app->get('/teams/{team}', function (Request $request, Response $response, array
 
 $app->get('/teams/{team}/hit', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
-    $this->logger->info("Get '/teams/$team/stand' route");
-    return $this->renderer->render($response, 'teams.phtml', $args);
+    $this->logger->info("Get '/teams/$team/hit' route");
+    array_push($_SESSION["cards"]["redCards"], getCardBase64("spade", "1"));
+    return json_encode($_SESSION["cards"]);
 });
 
 $app->get('/teams/{team}/stand', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team/stand' route");
-    return $this->renderer->render($response, 'teams.phtml', $args);
 });
