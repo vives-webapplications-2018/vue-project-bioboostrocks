@@ -39,6 +39,12 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
     return file_get_contents("state/cards.json");
 });
 
+$app->get('/teams/reset', function (Request $request, Response $response, array $args) {
+    $this->logger->info("Get '/teams/reset' route");
+    //Delete state from filesytem
+    unlink("state/cards.json");
+});
+
 $app->get('/teams/{team}', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team' route");
