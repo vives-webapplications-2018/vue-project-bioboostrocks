@@ -22,9 +22,9 @@ $app->get('/playerCount', function (Request $request, Response $response, array 
 
 $app->get('/teams/cards', function (Request $request, Response $response, array $args) {
     $this->logger->info("Get '/cards' route");
-    if (!isset($_SESSION["cards"])) {
+    if (!file_exists("state/cards.json")) {
         $this->logger->info("Create cards array");
-        $_SESSION["cards"] = array(
+        $cards = array(
             "redCards" => array(
                 getCardBase64("club", "11"),
                 getCardBase64("diamond", "7")
@@ -34,8 +34,9 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
                 getCardBase64("spade", "5")
             )
         );
+        file_put_contents("state/cards.json", json_encode($cards));
     }
-    return json_encode($_SESSION["cards"]);
+    return file_get_contents("state/cards.json");
 });
 
 $app->get('/teams/{team}', function (Request $request, Response $response, array $args) {
@@ -47,8 +48,13 @@ $app->get('/teams/{team}', function (Request $request, Response $response, array
 $app->get('/teams/{team}/hit', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team/hit' route");
-    array_push($_SESSION["cards"][$team . "Cards"], getCardBase64("spade", "1"));
-    return json_encode($_SESSION["cards"]);
+
+    //Set assoc true for array
+    $cards = json_decode(file_get_contents("state/cards.json"), true);
+    array_push($cards[$team . "Cards"], getCardBase64("spade", "1"));
+    file_put_contents("state/cards.json", json_encode($cards));
+
+    return json_encode($cards);
 });
 
 $app->get('/teams/{team}/stand', function (Request $request, Response $response, array $args) {
