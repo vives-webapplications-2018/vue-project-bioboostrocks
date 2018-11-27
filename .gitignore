@@ -2,3 +2,4 @@
 /logs/*
 !/logs/README.md
 /public/state/cards.json
+/public/state/deck.json

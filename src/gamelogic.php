@@ -7,7 +7,6 @@ $blueCards = array();
 $cardNumbers = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13');
 $cardColors = array('spade', 'heart', 'diamond', 'club');
 
-$shuffledDeck = shuffleCards($cardColors, $cardNumbers);
 $newCard = hitCard($shuffledDeck);
 
 function shuffleCards($cardColors, $cardNumbers)
@@ -19,6 +18,22 @@ function shuffleCards($cardColors, $cardNumbers)
 	}
 	shuffle($deck);
 	return $deck;
+}
+
+newGame() {
+    $deck = shuffleCards($cardColors, $cardNumbers);
+    $cards = array(
+        "redCards" => array(
+            hitCard($deck),
+            hitCard($deck)
+        ),
+        "blueCards" => array(
+            hitCard($deck),
+            hitCard($deck)
+        )
+    );
+    saveDeck($deck);
+    saveCards($cards);
 }
 
 function hitCard(&$shuffledDeck)
@@ -44,3 +59,10 @@ function saveCards($cards) {
     file_put_contents("state/cards.json", json_encode($cards));
 }
 
+function readDeck() {
+    file_get_contents("state/deck.json");
+}
+
+function readCards() {
+    file_get_contents("state/cards.json");
+}
