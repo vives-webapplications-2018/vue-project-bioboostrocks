@@ -53,9 +53,12 @@ $app->get('/teams/{team}/hit', function (Request $request, Response $response, a
     $this->logger->info("Get '/teams/$team/hit' route");
 
     //Set assoc true for array
-    $cards = json_decode(file_get_contents("state/cards.json"), true);
-    array_push($cards[$team . "Cards"], getCardBase64("spade", "1"));
-    file_put_contents("state/cards.json", json_encode($cards));
+    $cards = json_decode(readCards(), true);
+    $deck = json_decode(readDeck(), true);
+    array_push($cards[$team . "Cards"], hitCard($deck));
+
+    saveCards($cards);
+    saveDeck($deck);
     
     return json_encode($cards);
 });
