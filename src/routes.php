@@ -24,17 +24,6 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
     $this->logger->info("Get '/cards' route");
     if (!file_exists("state/cards.json")) {
         $this->logger->info("Create cards array");
-        $cards = array(
-            "redCards" => array(
-                getCardBase64("club", "11"),
-                getCardBase64("diamond", "7")
-            ),
-            "blueCards" => array(
-                getCardBase64("club", "2"),
-                getCardBase64("spade", "5")
-            )
-        );
-        file_put_contents("state/cards.json", json_encode($cards));
     }
     return file_get_contents("state/cards.json");
 });
