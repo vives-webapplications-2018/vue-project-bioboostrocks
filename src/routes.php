@@ -11,15 +11,6 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     return $this->renderer->render($response, 'index.phtml', $args);
 });
 
-$app->get('/playerCount', function (Request $request, Response $response, array $args) {
-    $this->logger->info("Get '/playerCount' route");
-    $array = array(
-            "redPlayers" => 20,
-            "bluePlayers" => 40
-        );
-    return json_encode($array);
-});
-
 $app->get('/teams/cards', function (Request $request, Response $response, array $args) {
     $this->logger->info("Get '/cards' route");
     if (!file_exists("state/cards.json")) {
@@ -62,15 +53,3 @@ $app->get('/teams/{team}/hit', function (Request $request, Response $response, a
     
     return json_encode($cards);
 });
-
-$app->get('/ButtonCount', function (Request $request, Response $response, array $args) {
-    $this->logger->info("Get '/ButtonCount' route");
-    $array = array(
-            "blueHitCount" => 0,
-            "blueStandCount" => 0,
-            "redHitCount" => 0,
-            "redStandCount" => 0
-        );
-    return json_encode($array);
-});
-

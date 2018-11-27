@@ -4,10 +4,6 @@ window.onload = function() {
     app = new Vue({
         el: '#app',
         data: {
-            blueHitCount: 0,
-            blueStandCount: 0,
-            redHitCount: 0,
-            redStandCount: 0
         },
         methods: {
             updateCards: function() {
@@ -22,22 +18,12 @@ window.onload = function() {
                         }
                     }
                 });
-            },
-            getButtonCount: function () {
-                this.$http.get('/ButtonCount').then(response => {
-                    this.blueHitCount = response.body.blueHitCount;
-                    this.blueStandCount = response.body.blueStandCount;
-                    this.redHitCount = response.body.redHitCount;
-                    this.redStandCount = response.body.redStandCount;
-                });
-            },
+            }
         },
         mounted: function () {
             this.updateCards();
-            this.getButtonCount();
             setInterval(function () {
                 this.updateCards();
-                this.getButtonCount();
             }.bind(this), 500);
         }
     
