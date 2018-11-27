@@ -58,3 +58,15 @@ $app->get('/teams/{team}/hit', function (Request $request, Response $response, a
     
     return json_encode($cards);
 });
+
+$app->get('/ButtonCount', function (Request $request, Response $response, array $args) {
+    $this->logger->info("Get '/ButtonCount' route");
+    $array = array(
+            "blueHitCount" => 0,
+            "blueStandCount" => 0,
+            "redHitCount" => 0,
+            "redStandCount" => 0
+        );
+    return json_encode($array);
+});
+

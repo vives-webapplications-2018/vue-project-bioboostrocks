@@ -11,7 +11,7 @@ window.onload = function() {
                     this.redPlayers = response.body.redPlayers;
                     this.bluePlayers = response.body.bluePlayers;
                 });
-            }
+            },
         },
         mounted: function () {
             this.getPlayerCount();
@@ -21,29 +21,4 @@ window.onload = function() {
         }
     });
 }
-/* 
-var blueHitCounter = 0;
-var blueStandCounter = 0;
-var redStandCounter = 0;
-var redHitCounter = 0; */
-
-/* function blueStand() {
-    blueStandCounter += 1;
-    document.getElementById("blueStandCounter").innerHTML = blueStandCounter;
-};
-
-function blueHit() {
-    blueHitCounter += 1;
-    document.getElementById("blueHitCounter").innerHTML = blueHitCounter;
-};
-
-function redStand() {
-    redStandCounter += 1;
-    document.getElementById("redStandCounter").innerHTML = redStandCounter;
-};
-
-function redHit() {
-    redHitCounter += 1;
-    document.getElementById("redHitCounter").innerHTML = redHitCounter;
-}; */
 
