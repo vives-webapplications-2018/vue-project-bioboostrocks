@@ -4,24 +4,24 @@
 $redCards = array();
 $blueCards = array();
 
-$cardNumbers = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13');
-$cardColors = array('spade', 'heart', 'diamond', 'club');
 
-$newCard = hitCard($shuffledDeck);
-
-function shuffleCards($cardColors, $cardNumbers)
+function shuffleCards()
 {
+    $cardNumbers = array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13');
+    $cardColors = array('spade', 'heart', 'diamond', 'club');
+
+    $deck = array();
 	foreach($cardColors as $cardColor)
 	{
 		foreach($cardNumbers as $cardNumber)
-			$deck[] = $cardColor . $cardNumber;
+			array_push($deck, $cardColor . $cardNumber);
 	}
 	shuffle($deck);
 	return $deck;
 }
 
 function newGame() {
-    $deck = shuffleCards($cardColors, $cardNumbers);
+    $deck = shuffleCards();
     $cards = array(
         "redCards" => array(
             hitCard($deck),
@@ -42,13 +42,27 @@ function hitCard(&$shuffledDeck)
 	return $drawnCard;
 }
 
-function getCardBase64($newCard)
+function getCardBase64($card)
 {
-	$number = preg_replace("/[^0-9\.]/", '', $newCard);
-	$symbol = preg_replace('/[0-9]+/', '', $newCard);
+	$number = preg_replace("/[^0-9\.]/", '', $card);
+	$symbol = preg_replace('/[0-9]+/', '', $card);
 
     $base64 = file_get_contents("cards/$symbol/$symbol$number.html.base64");
     return str_replace("\n", "", $base64);
+}
+
+function getCardsBase64($cards) {
+    $base64 = array(
+        "redCards" => array(),
+        "blueCards" => array()
+    );
+    foreach($cards["redCards"] as $card) {
+        array_push($base64["redCards"], getCardBase64($card));
+    }
+    foreach($cards["blueCards"] as $card) {
+        array_push($base64["blueCards"], getCardBase64($card));
+    }
+    return json_encode($base64);
 }
 
 function saveDeck($deck) {
@@ -60,9 +74,9 @@ function saveCards($cards) {
 }
 
 function readDeck() {
-    file_get_contents("state/deck.json");
+    return file_get_contents("state/deck.json");
 }
 
 function readCards() {
-    file_get_contents("state/cards.json");
+    return file_get_contents("state/cards.json");
 }

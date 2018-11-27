@@ -24,8 +24,9 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
     $this->logger->info("Get '/cards' route");
     if (!file_exists("state/cards.json")) {
         $this->logger->info("Create cards array");
+        newGame();
     }
-    return file_get_contents("state/cards.json");
+    return getCardsBase64(json_decode(readCards(), true));
 });
 
 $app->get('/teams/reset', function (Request $request, Response $response, array $args) {
