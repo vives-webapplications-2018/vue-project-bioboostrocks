@@ -3,6 +3,12 @@ var app;
 window.onload = function() {
     app = new Vue({
         el: '#app',
+        data: {
+            blueHitCount: 0,
+            blueStandCount: 0,
+            redHitCount: 0,
+            redStandCount: 0
+        },
         methods: {
             updateCards: function() {
                 this.$http.get('/teams/cards').then(response => {
@@ -28,8 +34,10 @@ window.onload = function() {
         },
         mounted: function () {
             this.updateCards();
+            this.getButtonCount();
             setInterval(function () {
                 this.updateCards();
+                this.getButtonCount();
             }.bind(this), 500);
         }
     
