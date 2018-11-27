@@ -11,7 +11,7 @@ window.onload = function() {
                     this.redPlayers = response.body.redPlayers;
                     this.bluePlayers = response.body.bluePlayers;
                 });
-            }
+            },
         },
         mounted: function () {
             this.getPlayerCount();
@@ -21,3 +21,4 @@ window.onload = function() {
         }
     });
 }
+

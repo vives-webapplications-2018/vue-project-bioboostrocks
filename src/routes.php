@@ -41,6 +41,13 @@ $app->get('/teams/{team}', function (Request $request, Response $response, array
     return $this->renderer->render($response, 'teams.phtml', $args);
 });
 
+
+
+$app->get('/teams/{team}/stand', function (Request $request, Response $response, array $args) {
+    $team = $request->getAttribute('team');
+    $this->logger->info("Get '/teams/$team/stand' route");
+});
+
 $app->get('/teams/{team}/hit', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team/hit' route");
@@ -49,11 +56,18 @@ $app->get('/teams/{team}/hit', function (Request $request, Response $response, a
     $cards = json_decode(file_get_contents("state/cards.json"), true);
     array_push($cards[$team . "Cards"], getCardBase64("spade", "1"));
     file_put_contents("state/cards.json", json_encode($cards));
-
+    
     return json_encode($cards);
 });
 
-$app->get('/teams/{team}/stand', function (Request $request, Response $response, array $args) {
-    $team = $request->getAttribute('team');
-    $this->logger->info("Get '/teams/$team/stand' route");
+$app->get('/ButtonCount', function (Request $request, Response $response, array $args) {
+    $this->logger->info("Get '/ButtonCount' route");
+    $array = array(
+            "blueHitCount" => 0,
+            "blueStandCount" => 0,
+            "redHitCount" => 0,
+            "redStandCount" => 0
+        );
+    return json_encode($array);
 });
+
