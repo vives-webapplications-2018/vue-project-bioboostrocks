@@ -28,8 +28,8 @@
                     <h2>Welcome to team <?= $team ?></h2>
                     <div class="container">
                         <div id="redButtons" class="col s5">
-                            <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit" <?=($team=="red")? "":"disabled"?>>Hit (50%)</button>
-                            <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand" <?=($team=="red")? "":"disabled"?>>Stand (50%)</button>
+                            <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit" <?=($team=="red")? "":"disabled"?>>Hit</button>
+                            <button class="btn waves-effect waves-light red" type="submit" onclick="fetch('/teams/red/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand" <?=($team=="red")? "":"disabled"?>>Stand</button>
                         </div>
                     </div>
                     <div class="container">
@@ -40,18 +40,18 @@
                     </div>
                     <div class="container">
                         <div id="blueButtons" class="col s5">
-                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand" <?=($team=="blue")?"":"disabled"?>>Stand (50%)</button>
-                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit" <?=($team=="blue")?"":"disabled"?>>Hit (50%)</button>
+                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/stand', {method:'GET', credentials: 'include'}); app.updateCards();" name="stand" <?=($team=="blue")?"":"disabled"?>>Stand</button>
+                            <button class="btn waves-effect waves-light blue" type="submit" onclick="fetch('/teams/blue/hit', {method:'GET', credentials: 'include'}); app.updateCards();" name="hit" <?=($team=="blue")?"":"disabled"?>>Hit</button>
                         </div>
                     </div>
                     <div class="container">
                         <div id="redResults" class="col s6">
-                            <p>50% voted Hit (4)</p>
-                            <p>50% voted Stand (4)</p>
+                            <p><a id="redHitCounter">0</a> voted Hit</p>
+                            <p><a id="redStandCounter">0</a> voted Stand</p>
                         </div>
                         <div id="blueResults" class="col s6">
-                            <p>50% voted Hit (4)</p>
-                            <p>50% voted Stand (4)</p>
+                            <p><a id="blueHitCounter">0</a> voted Hit</p>
+                            <p><a id="blueStandCounter">0</a>voted Stand</p>
                         </div>
                     </div>
                     <div class="container">
