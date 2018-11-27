@@ -36,4 +36,11 @@ function getCardBase64($newCard)
     return str_replace("\n", "", $base64);
 }
 
+function saveDeck($deck) {
+    file_put_contents("state/deck.json", json_encode($deck));
+}
+
+function saveCards($cards) {
+    file_put_contents("state/cards.json", json_encode($cards));
+}
 
