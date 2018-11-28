@@ -69,9 +69,9 @@ function saveCards($cards) {
 }
 
 function readDeck() {
-    return file_get_contents("state/deck.json");
+    return json_decode(file_get_contents("state/deck.json"), true);
 }
 
 function readCards() {
-    return file_get_contents("state/cards.json");
+    return json_decode(file_get_contents("state/cards.json"), true);
 }

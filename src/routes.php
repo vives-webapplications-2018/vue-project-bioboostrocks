@@ -17,7 +17,7 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
         $this->logger->info("Create cards array");
         newGame();
     }
-    return getCardsBase64(json_decode(readCards(), true));
+    return getCardsBase64(readCards());
 });
 
 $app->get('/teams/reset', function (Request $request, Response $response, array $args) {
@@ -26,13 +26,27 @@ $app->get('/teams/reset', function (Request $request, Response $response, array 
     unlink("state/cards.json");
 });
 
+$app->get('/teams/stats', function (Request $request, Response $response, array $args) {
+    $this->logger->info("Get '/teams/stats' route");
+    $stats = array(
+        "red" => array(
+            "score" => 0,
+            "sum" => 0
+        ),
+        "blue" => array(
+            "score" => 0,
+            "sum" => 0
+        )
+    );
+    return json_encode($stats);
+});
+
+
 $app->get('/teams/{team}', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team' route");
     return $this->renderer->render($response, 'teams.phtml', $args);
 });
-
-
 
 $app->get('/teams/{team}/stand', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
@@ -44,8 +58,8 @@ $app->get('/teams/{team}/hit', function (Request $request, Response $response, a
     $this->logger->info("Get '/teams/$team/hit' route");
 
     //Set assoc true for array
-    $cards = json_decode(readCards(), true);
-    $deck = json_decode(readDeck(), true);
+    $cards = readCards();
+    $deck = readDeck();
     array_push($cards[$team . "Cards"], hitCard($deck));
 
     saveCards($cards);
