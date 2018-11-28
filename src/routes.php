@@ -28,17 +28,20 @@ $app->get('/teams/reset', function (Request $request, Response $response, array 
 
 $app->get('/teams/stats', function (Request $request, Response $response, array $args) {
     $this->logger->info("Get '/teams/stats' route");
-    $stats = array(
-        "red" => array(
-            "score" => 0,
-            "sum" => 0
-        ),
-        "blue" => array(
-            "score" => 0,
-            "sum" => 0
-        )
-    );
-    return json_encode($stats);
+    if (!file_exists("state/cards.json")) {
+        $stats = array(
+            "red" => array(
+                "score" => 0,
+                "sum" => 0
+            ),
+            "blue" => array(
+                "score" => 0,
+                "sum" => 0
+            )
+        );
+        saveStats($stats);
+    }
+    return readStats();
 });
 
 
