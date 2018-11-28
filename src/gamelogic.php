@@ -68,10 +68,18 @@ function saveCards($cards) {
     file_put_contents("state/cards.json", json_encode($cards));
 }
 
+function saveStats($stats) {
+    file_put_contents("state/stats.json", json_encode($stats));
+}
+
 function readDeck() {
     return json_decode(file_get_contents("state/deck.json"), true);
 }
 
 function readCards() {
     return json_decode(file_get_contents("state/cards.json"), true);
+}
+
+function readStats() {
+    return json_decode(file_get_contents("state/stats.json"), true);
 }
