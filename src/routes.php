@@ -24,6 +24,8 @@ $app->get('/teams/reset', function (Request $request, Response $response, array 
     $this->logger->info("Get '/teams/reset' route");
     //Delete state from filesytem
     unlink("state/cards.json");
+    unlink("state/deck.json");
+    unlink("state/stats.json");
 });
 
 $app->get('/teams/stats', function (Request $request, Response $response, array $args) {
@@ -41,7 +43,7 @@ $app->get('/teams/stats', function (Request $request, Response $response, array 
         );
         saveStats($stats);
     }
-    return readStats();
+    return json_encode(readStats());
 });
 
 
@@ -63,7 +65,7 @@ $app->get('/teams/{team}/hit', function (Request $request, Response $response, a
     //Set assoc true for array
     $cards = readCards();
     $deck = readDeck();
-    array_push($cards[$team . "Cards"], hitCard($deck));
+    array_push($cards[$team . "Cards"], hitCard($deck, $team));
 
     saveCards($cards);
     saveDeck($deck);
