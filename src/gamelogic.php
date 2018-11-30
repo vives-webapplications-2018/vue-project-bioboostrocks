@@ -36,7 +36,7 @@ function hitCard(&$shuffledDeck, string $team)
 	$drawnCard = array_pop($shuffledDeck);
     $stats = readStats();
     $value = preg_replace("/[^0-9\.]/", '', $drawnCard);
-    if ($value == 1 && $stats[$team]["sum"] <= 21) {
+    if ($value == 1 && $stats[$team]["sum"] + 11 <= 21) {
         $stats[$team]["sum"] += 11;
     } else {
         $stats[$team]["sum"] += min(10, $value);
