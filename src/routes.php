@@ -34,11 +34,13 @@ $app->get('/teams/stats', function (Request $request, Response $response, array 
         $stats = array(
             "red" => array(
                 "score" => 0,
-                "sum" => 0
+                "sum" => 0,
+                "stand" => 0
             ),
             "blue" => array(
                 "score" => 0,
-                "sum" => 0
+                "sum" => 0,
+                "stand" => 0
             )
         );
         saveStats($stats);
