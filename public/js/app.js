@@ -4,6 +4,8 @@ window.onload = function() {
     app = new Vue({
         el: '#app',
         data: {
+			redPoints: 0;
+			bluePoints: 0;
         },
         methods: {
             updateCards: function() {
@@ -25,6 +27,7 @@ window.onload = function() {
             setInterval(function () {
                 this.updateCards();
             }.bind(this), 500);
+			this.updateScore();
         }
     
     })
