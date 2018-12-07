@@ -16,7 +16,7 @@ function shuffleCards()
 }
 
 function newGame() {
-    $deck = shuffleCards();
+	$deck = shuffleCards();
     $cards = array(
         "redCards" => array(
             hitCard($deck, "red"),
@@ -37,7 +37,7 @@ function hitCard(&$shuffledDeck, string $team)
     $stats = readStats();
     $value = preg_replace("/[^0-9\.]/", '', $drawnCard);
 
-  	if ($value == 1 && readAces($team) == NULL) {
+  	if ($value == 1 && (file_exists("state/$team-ace.txt") == false)) {
         $stats[$team]["sum"] += 11;
 		saveAces($team);
     } else {
@@ -77,8 +77,7 @@ function getCardsBase64($cards) {
 }
 
 function saveAce($team) {
-	$acefile = fopen("state/$team-ace.txt", "w");
-	fwrite($acefile, "ace present");
+	file_put_contents("state/$team-ace.txt", "ace present");
 }
 
 function saveDeck($deck) {
@@ -91,11 +90,6 @@ function saveCards($cards) {
 
 function saveStats($stats) {
     file_put_contents("state/stats.json", json_encode($stats));
-}
-
-function readAces($team){
-	$acefile = fopen("state/$team-ace.txt", "r");
-	return fgets($acefile);	
 }
 
 function readDeck() {
