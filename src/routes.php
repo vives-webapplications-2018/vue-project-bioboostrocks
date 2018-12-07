@@ -45,7 +45,10 @@ $app->get('/teams/stats', function (Request $request, Response $response, array 
         );
         saveStats($stats);
     }
-    return json_encode(readStats());
+    $stats = readStats();
+    $stats["red"]["sum"] = 0;
+    $stats["blue"]["sum"] = 0;
+    return json_encode($stats);
 });
 
 
@@ -58,6 +61,11 @@ $app->get('/teams/{team}', function (Request $request, Response $response, array
 $app->get('/teams/{team}/stand', function (Request $request, Response $response, array $args) {
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team/stand' route");
+
+    $stats = readStats();
+    $stats[$team]["stand"] = 1;
+    saveStats($stats);
+    return;
 });
 
 $app->get('/teams/{team}/hit', function (Request $request, Response $response, array $args) {
@@ -72,5 +80,5 @@ $app->get('/teams/{team}/hit', function (Request $request, Response $response, a
     saveCards($cards);
     saveDeck($deck);
     
-    return json_encode($cards);
+    return;
 });
