@@ -43,6 +43,10 @@ function hitCard(&$shuffledDeck, string $team)
     } else {
         $stats[$team]["sum"] += min(10, $value);
     } 
+
+    if ($stats[$team]["sum"] >= 21) {
+        $stats[$team]["stand"] = 1;
+    }
 	
     saveStats($stats);
 
