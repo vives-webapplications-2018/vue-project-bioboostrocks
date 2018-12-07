@@ -35,7 +35,7 @@
                     <div class="container">
                         <div id="quitButton" class="col s2">
                             <a class="btn waves-effect waves-light grey darken-3" type="submit" href="/" name="quit">Quit</a>
-                            <a class="btn waves-effect waves-light grey darken-3" type="button" onclick= "M.toast({html: 'Red 0 - 0 Blue', classes: 'grey darken-3'});" name="score">Score</a>
+                            <a class="btn waves-effect waves-light grey darken-3" type="button" onclick= "M.toast({html: 'Red ' + app.$data.redScore + ' - ' + app.$data.blueScore + ' Blue', classes: 'grey darken-3'});" name="score">Score</a>
                             <a class="btn waves-effect waves-light grey darken-3" type="submit" onclick="fetch('/teams/reset', {method: 'GET'});location.reload();" name="reset">Reset</a>
                         </div>
                     </div>
