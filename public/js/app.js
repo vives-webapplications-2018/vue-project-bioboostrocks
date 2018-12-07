@@ -4,6 +4,8 @@ window.onload = function() {
     app = new Vue({
         el: '#app',
         data: {
+            redScore: 0,
+            blueScore: 0
         },
         methods: {
             updateCards: function() {
@@ -32,6 +34,8 @@ window.onload = function() {
                             document.getElementById('blueButtons').children[1].className += ' disabled';
                         }
                     }
+                    redScore = response.body.red.score;
+                    blueScore = response.body.blue.score;
                 })
             }
         },
