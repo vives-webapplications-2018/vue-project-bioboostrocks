@@ -26,8 +26,8 @@ $app->get('/teams/reset', function (Request $request, Response $response, array 
     unlink("state/cards.json");
     unlink("state/deck.json");
     unlink("state/stats.json");
-	unlink("state/red.json");
-	unlink("state/blue.json");
+	unlink("state/red.txt");
+	unlink("state/blue.txt");
 });
 
 $app->get('/teams/stats', function (Request $request, Response $response, array $args) {
