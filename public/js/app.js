@@ -4,6 +4,8 @@ window.onload = function() {
     app = new Vue({
         el: '#app',
         data: {
+			redPoints: 0;
+			bluePoints: 0;
         },
         methods: {
             updateCards: function() {

@@ -36,12 +36,14 @@ function hitCard(&$shuffledDeck, string $team)
 	$drawnCard = array_pop($shuffledDeck);
     $stats = readStats();
     $value = preg_replace("/[^0-9\.]/", '', $drawnCard);
-/*  if ($value == 1 && $stats[$team]["sum"] + 11 <= 21) {
+
+  	if ($value == 1 && readAces($team) == NULL) {
         $stats[$team]["sum"] += 11;
+		saveAces($team);
     } else {
         $stats[$team]["sum"] += min(10, $value);
-    } */
-    $stats[$team]["sum"] += min(10, $value);
+    } 
+	
     saveStats($stats);
 
 	return $drawnCard;
@@ -70,6 +72,11 @@ function getCardsBase64($cards) {
     return json_encode($base64);
 }
 
+function saveAce($team) {
+	$acefile = fopen("state/$team-ace.txt", "w");
+	fwrite($acefile, "ace present");
+}
+
 function saveDeck($deck) {
     file_put_contents("state/deck.json", json_encode($deck));
 }
@@ -80,6 +87,11 @@ function saveCards($cards) {
 
 function saveStats($stats) {
     file_put_contents("state/stats.json", json_encode($stats));
+}
+
+function readAces($team){
+	$acefile = fopen("state/$team-ace.txt", "r");
+	return fgets($acefile);	
 }
 
 function readDeck() {
