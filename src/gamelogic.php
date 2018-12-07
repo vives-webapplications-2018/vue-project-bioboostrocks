@@ -37,15 +37,17 @@ function hitCard(&$shuffledDeck, string $team)
     $stats = readStats();
     $value = preg_replace("/[^0-9\.]/", '', $drawnCard);
 
-  	if ($value == 1 && (file_exists("state/$team-ace.txt") == false)) {
-        $stats[$team]["sum"] += 11;
-		saveAces($team);
-    } else {
-        $stats[$team]["sum"] += min(10, $value);
-    } 
+    if ($stats[$team]["stand"] == 0) {
+  	    if ($value == 1 && (file_exists("state/$team-ace.txt") == false)) {
+            $stats[$team]["sum"] += 11;
+	    	saveAces($team);
+        } else {
+            $stats[$team]["sum"] += min(10, $value);
+        } 
 
-    if ($stats[$team]["sum"] >= 21) {
-        $stats[$team]["stand"] = 1;
+        if ($stats[$team]["sum"] >= 21) {
+            $stats[$team]["stand"] = 1;
+        }
     }
 	
     saveStats($stats);
