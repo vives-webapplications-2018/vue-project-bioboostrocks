@@ -13,6 +13,7 @@ body {
 
 /* Card */
 .card {
+  backface-visibility: hidden;
   z-index: 1;
   background: #ffffff;
   width: 360px;

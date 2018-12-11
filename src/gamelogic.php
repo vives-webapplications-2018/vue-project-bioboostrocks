@@ -31,6 +31,20 @@ function newGame() {
     saveCards($cards);
 }
 
+function resetCards() {
+    unlink("state/cards.json");
+	unlink("state/red-ace.txt");
+	unlink("state/blue-ace.txt");
+}
+
+function resetDeck() {
+    unlink("state/cards.json");
+    unlink("state/deck.json");
+    unlink("state/stats.json");
+	unlink("state/red-ace.txt");
+	unlink("state/blue-ace.txt");
+}
+
 function hitCard(&$shuffledDeck, string $team)
 {
 	$drawnCard = array_pop($shuffledDeck);
@@ -78,7 +92,7 @@ function getCardsBase64($cards) {
     return json_encode($base64);
 }
 
-function saveAce($team) {
+function saveAces($team) {
 	file_put_contents("state/$team-ace.txt", "ace present");
 }
 
