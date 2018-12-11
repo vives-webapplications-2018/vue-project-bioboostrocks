@@ -16,6 +16,7 @@ function shuffleCards()
 }
 
 function newGame() {
+    createStats();
 	$deck = shuffleCards();
     $cards = array(
         "redCards" => array(
@@ -31,18 +32,45 @@ function newGame() {
     saveCards($cards);
 }
 
+function createStats() {
+    if (!file_exists("state/stats.json")) {
+        $stats = array(
+            "red" => array(
+                "score" => 0,
+                "sum" => 0,
+                "stand" => 0
+            ),
+            "blue" => array(
+                "score" => 0,
+                "sum" => 0,
+                "stand" => 0
+            ),
+            "gameId" => 0
+        );
+        saveStats($stats);
+    }
+}
+
 function resetCards() {
     unlink("state/cards.json");
-	unlink("state/red-ace.txt");
-	unlink("state/blue-ace.txt");
+    if (file_exists("state/red-ace.txt")) {
+	    unlink("state/red-ace.txt");
+    }
+    if (file_exists("state/blue-ace.txt")) {
+	    unlink("state/blue-ace.txt");
+    }
 }
 
 function resetDeck() {
     unlink("state/cards.json");
     unlink("state/deck.json");
     unlink("state/stats.json");
-	unlink("state/red-ace.txt");
-	unlink("state/blue-ace.txt");
+    if (file_exists("state/red-ace.txt")) {
+	    unlink("state/red-ace.txt");
+    }
+    if (file_exists("state/blue-ace.txt")) {
+	    unlink("state/blue-ace.txt");
+    }
 }
 
 function hitCard(&$shuffledDeck, string $team)
@@ -67,6 +95,11 @@ function hitCard(&$shuffledDeck, string $team)
     saveStats($stats);
 
 	return $drawnCard;
+}
+
+function getCardsTotal() {
+    $cards = readCards();
+    return sizeof($cards["redCards"]) + sizeof($cards["blueCards"]);
 }
 
 function getCardBase64($card)

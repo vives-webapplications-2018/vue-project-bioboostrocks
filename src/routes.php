@@ -28,21 +28,6 @@ $app->get('/teams/reset', function (Request $request, Response $response, array 
 
 $app->get('/teams/stats', function (Request $request, Response $response, array $args) {
     $this->logger->info("Get '/teams/stats' route");
-    if (!file_exists("state/cards.json")) {
-        $stats = array(
-            "red" => array(
-                "score" => 0,
-                "sum" => 0,
-                "stand" => 0
-            ),
-            "blue" => array(
-                "score" => 0,
-                "sum" => 0,
-                "stand" => 0
-            )
-        );
-        saveStats($stats);
-    }
     $stats = readStats();
     $stats["red"]["sum"] = 0;
     $stats["blue"]["sum"] = 0;
@@ -60,15 +45,37 @@ $app->get('/teams/{team}/stand', function (Request $request, Response $response,
     $team = $request->getAttribute('team');
     $this->logger->info("Get '/teams/$team/stand' route");
 
+    createStats();
     $stats = readStats();
     $stats[$team]["stand"] = 1;
-    if ($stats["red"]["stand"] == 1 && $stats["blue"]["stand"] == 1) {
-        if ($stats["red"]["sum"] > 21 && $stats["blue"]["sum"] > 21)  {
 
+    if ($stats["red"]["stand"] == 1 && $stats["blue"]["stand"] == 1) {
+        if ($stats["red"]["sum"] <= 21 && $stats["blue"] <= 21) {
+            if ($stats["red"]["sum"] > $stats["blue"]["sum"])  {
+                $stats["red"]["score"] += getCardsTotal();
+            } else if ($stats["blue"]["sum"] > $stats["red"]["sum"])  {
+                $stats["blue"]["score"] += getCardsTotal();
+            } else {
+                $total = getCardsTotal();
+                $stats["red"]["score"] += $total; 
+                $stats["blue"]["score"] += $total; 
+            }
         }
 
+        if ($stats["red"]["sum"] <= 21 && $stats["blue"] > 21) {
+            $stats["red"]["score"] += getCardsTotal(); 
+        }
+
+        if ($stats["blue"]["sum"] <= 21 && $stats["red"] > 21) {
+            $stats["blue"]["score"] += getCardsTotal(); 
+        }
+
+        $stats["red"]["sum"] = 0;
+        $stats["blue"]["sum"] = 0;
         $stats["red"]["stand"] = 0;
         $stats["blue"]["stand"] = 0;
+        $stats["gameId"]++;
+        resetCards();
     }
     saveStats($stats);
     return;

@@ -5,7 +5,8 @@ window.onload = function() {
         el: '#app',
         data: {
             redScore: 0,
-            blueScore: 0
+            blueScore: 0,
+            gameId: -1
         },
         methods: {
             updateCards: function() {
@@ -34,9 +35,18 @@ window.onload = function() {
                             document.getElementById('blueButtons').children[1].className += ' disabled';
                         }
                     }
-                    redScore = response.body.red.score;
-                    blueScore = response.body.blue.score;
+                    app.redScore = response.body.red.score;
+                    app.blueScore = response.body.blue.score;
+                    if (app.gameId == -1) {
+                        app.gameId = response.body.gameId;
+                        this.showToast(app.redScore, app.blueScore);
+                    } else if (response.body.gameId != app.gameId) {
+                        location.reload();
+                    }
                 })
+            },
+            showToast: function(redScore, blueScore) {
+                M.toast({html: 'Red ' + redScore + ' - ' + blueScore + ' Blue', classes: 'grey darken-3'});
             }
         },
         mounted: function () {
@@ -49,6 +59,5 @@ window.onload = function() {
                 this.updateStats();
             }.bind(this), 500);
         }
-    
     })
 }
