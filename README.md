@@ -27,10 +27,14 @@ We will have an array with all the possible values in it. For the first draw eac
 ## Teams:
 When you enter a game, you can manually join a team, you will see how many people are already in the team. Once the start button has been pressed it is not longer possible to join a team because the game will start. As a member of the team you will have the choice to vote for 1 of 2 posibilities. Either you vote for "Hit" or you vote for "Stand". You will have 30 seconds to press 1 of the 2 buttons. After the time limit has passed or everyone has voted, the option with the most votes will be executed.
 
-## Problems:
+## Possible problems:
 
 - The card "1" has two meanings in Blackjack. The "1" can stand for a value of 1 or 11. We will solve this to always let the number "1" be a value of 11 until the combined values of the numbers become higher then 21, if this happens the number "1" will have a value of 1. 
 
 - What if you draw two times the number "1"? If this is the case, the first number 1 card will have the value 11 and the next number 1 card will recieve the value 1 otherwise the total value of the numbers will exceed the value 21.
 
 - If all the players on the same team has voted equally, so the votes are 50%-50% for "Stand" and "Hit". The outcome will be random or it will always be 1 of the 2 each time (fixed outcome with 50%, for example it will always be "Hit").
+
+## Code problems:
+don't manually type the "PHP -S localhost:3000 -t public public/index.php" command. It doesn't work! Use "composer start" to fix the problem!
+
