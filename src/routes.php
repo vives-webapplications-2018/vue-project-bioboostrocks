@@ -23,11 +23,7 @@ $app->get('/teams/cards', function (Request $request, Response $response, array 
 $app->get('/teams/reset', function (Request $request, Response $response, array $args) {
     $this->logger->info("Get '/teams/reset' route");
     //Delete state from filesytem
-    unlink("state/cards.json");
-    unlink("state/deck.json");
-    unlink("state/stats.json");
-	unlink("state/red.txt");
-	unlink("state/blue.txt");
+    resetDeck();
 });
 
 $app->get('/teams/stats', function (Request $request, Response $response, array $args) {
@@ -66,6 +62,14 @@ $app->get('/teams/{team}/stand', function (Request $request, Response $response,
 
     $stats = readStats();
     $stats[$team]["stand"] = 1;
+    if ($stats["red"]["stand"] == 1 && $stats["blue"]["stand"] == 1) {
+        if ($stats["red"]["sum"] > 21 && $stats["blue"]["sum"] > 21)  {
+
+        }
+
+        $stats["red"]["stand"] = 0;
+        $stats["blue"]["stand"] = 0;
+    }
     saveStats($stats);
     return;
 });
