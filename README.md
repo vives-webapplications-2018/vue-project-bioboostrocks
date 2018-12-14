@@ -1,10 +1,15 @@
 # Project
 Multiplayer Blackjack.
 
-## Dependencies
-You will need to install the SLIM skeleton framework with composer, use this command in the root directory:
+## Installation
+You will need to install the composer packet manager.
+
+After installing composer, you can use following commands to launch the application
 ```
-composer require slim/slim "^3.0"
+git clone https://github.com/vives-webapplications-2018/vue-project-bioboostrocks.git
+cd vue-project-bioboostrocks
+composer install
+composer start
 ```
 ## What?
 Team vs Team Blackjack.
